@@ -12,7 +12,7 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -22,29 +22,9 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "Button",
-                    "id": "590531ab-876c-4d5c-a06a-e4d1e93da216",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "cd3a7add-7893-4d46-93db-3fb0ace73c51",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "374687a3-d77e-40b7-8622-4527fe2178e4",
@@ -57,7 +37,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Up",
                     "id": "fa08c1a2-b40a-4705-8959-ae810d48db12",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -68,7 +48,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "Down",
                     "id": "74b40c57-266e-40f1-ab7c-43d2f340f15b",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -79,7 +59,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
+                    "name": "Left",
                     "id": "79c4f6a1-a707-434f-a588-2b04bcde418e",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -90,7 +70,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Right",
                     "id": "034b9388-babc-403e-917e-b9261d7b3371",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -108,17 +88,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ca01b96-51b3-44b1-a488-4d9d2bba3e7e",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

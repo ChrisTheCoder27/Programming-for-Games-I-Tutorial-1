@@ -6,33 +6,36 @@ public class PlayerController : MonoBehaviour
 {
 
     //[Header("Player Stats")]
-    [SerializeField] private float jump = 5f;
-    private float walkingSpeed = 5f;
-    private Vector2 move;
+    Rigidbody rb;
+    private Vector2 _move;
+    public float speed;
+    public float jump;
+    bool isGrounded;
 
     void Start()
     {
-        
-    }
-
-    private void Awake()
-    {
+        rb = GetComponent<Rigidbody>();
         Inputs.Init(this);
     }
+    
 
-    public void setLook (Vector2 w)
+    private void Update()
     {
-
+        transform.Translate(Vector3.forward * (speed * Time.deltaTime * _move.y), Space.Self);
+        transform.Translate(Vector3.right * (speed * Time.deltaTime * _move.x), Space.Self);
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y);
     }
 
-    public void MoveTo(Vector2 s)
+    public void Move(Vector2 direction)
     {
-        move = s;
+        _move = direction;
     }
 
-    void Update()
+    public void Jump()
     {
-        transform.Translate(Vector3.forward * (move.y * Time.deltaTime) * walkingSpeed, Space.Self);
-        transform.Translate(Vector3.right * (move.x * Time.deltaTime) * walkingSpeed, Space.Self);
+        if (isGrounded)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jump, rb.velocity.z);
+        }
     }
 }
