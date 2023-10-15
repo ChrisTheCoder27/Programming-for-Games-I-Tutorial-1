@@ -17,8 +17,12 @@ public static class Inputs
     {
         _actions = new PlayerAction();
         BindNewPlayer(player);
+
+        // Bind Actions
         _actions.Player.Move.performed += ctx => _owner.Move(ctx.ReadValue<Vector2>());
         _actions.Player.Jump.performed += ctx => _owner.Jump();
+        _actions.Player.Look.performed += ctx => _owner.SetLook(ctx.ReadValue<Vector2>());
+        _actions.Player.Shoot.performed += ctx => _owner.Shoot();
 
         _actions.Permanent.Enable();
 
