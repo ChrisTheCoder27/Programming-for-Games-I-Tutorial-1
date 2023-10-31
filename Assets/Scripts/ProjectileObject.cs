@@ -3,14 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileObject : Weapon
+public class ProjectileObject : MonoBehaviour
 {
-    [SerializeField] private ProjectileObject projectileFired;
-    [SerializeField] private Transform firePoint;
+    private float curSpeed;
+    private float curDamage;
+    public float baseSpeed;
+    private Vector2 curDirection;
+    public float contactDamage;
 
-    protected override void Attack(float chargePercent)
+    private Rigidbody owner;
+
+    public float lifeTime = 0;
+
+    public void Initialize(float chargePercent, Rigidbody owner)
     {
-        ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
+        this.owner = owner;
+        curDirection = transform.right;
+        curSpeed = baseSpeed * chargePercent;
+        curDamage = contactDamage * chargePercent;
+        GetComponent<Rigidbody>().AddForce(transform.forward * curSpeed, ForceMode.Impulse);
     }
 
 }

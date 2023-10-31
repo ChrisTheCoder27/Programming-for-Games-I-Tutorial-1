@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     Rigidbody rb;
 
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded;
 
+    public float health { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +49,9 @@ public class PlayerController : MonoBehaviour
         if(isAttacking)
         {
             weapon.StartAttack();
+        }
+        else
+        {
             weapon.EndAttack();
         }
         /*if (ammo > 0)
@@ -94,5 +99,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, jump, rb.velocity.z);
         }
+    }
+
+    public void Die()
+    {
+
+    }
+
+    public void TakeDamage(float damageTaken)
+    {
+
     }
 }
