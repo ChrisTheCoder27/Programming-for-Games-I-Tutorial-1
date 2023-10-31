@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,25 +11,23 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _move;
     private Vector2 rotate;
-    //private Vector2 currentAngle;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
     [SerializeField] private float jump;
     [SerializeField] private float sensitivity;
+    [SerializeField] private int ammo;
+
+    [SerializeField] private Weapon weapon;
+    private bool isAttacking;
 
     [SerializeField, Range(0, 180)] private float viewAngleClamp = 40f;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Transform camFollowTarget;
 
-    /*[SerializeField, Range(1, 20)] private float mouseSensX;
-    [SerializeField, Range(1, 20)] private float mouseSensY;
-
-    [SerializeField, Range(-90, 0)] private float minViewAngle;
-    [SerializeField, Range(0, 90)] private float maxViewAngle;*/
     bool isGrounded;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         Inputs.Init(this);
@@ -46,10 +43,25 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        Rigidbody rbBullet = Instantiate(projectile, projectilePos.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rbBullet.AddForce(Vector3.forward*32f,ForceMode.Impulse);
+        isAttacking = !isAttacking;
+        if(isAttacking)
+        {
+            weapon.StartAttack();
+            weapon.EndAttack();
+        }
+        /*if (ammo > 0)
+        {
+            Rigidbody rbBullet = Instantiate(projectile, projectilePos.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rbBullet.AddForce(camFollowTarget.forward * 32f, ForceMode.Impulse);
 
-        Destroy(rbBullet.gameObject, 4);
+            Destroy(rbBullet.gameObject, 4);
+            ammo--;
+        }*/
+    }
+
+    public void Reload()
+    {
+        ammo = 5;
     }
 
     public void SetLook(Vector2 direction)

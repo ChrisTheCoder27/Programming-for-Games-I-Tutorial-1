@@ -34,8 +34,17 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "670d40a8-e3d4-47d4-9f50-0af4f14912d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "064f5dbe-67a0-4fdb-8ce3-804382e217f4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e138e2c-a803-415f-be4e-3bc4f39a8cc1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
