@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour, IDamagable
 {
     Rigidbody rb;
 
-    public GameObject projectile;
-    public Transform projectilePos;
+    //public GameObject projectile;
+    //public Transform projectilePos;
 
     private Vector2 _move;
     private Vector2 rotate;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public void Shoot()
     {
         isAttacking = !isAttacking;
-        if(isAttacking)
+        if (isAttacking)
         {
             weapon.StartAttack();
         }

@@ -8,7 +8,7 @@ public class ProjectileObject : MonoBehaviour
     private float curSpeed;
     private float curDamage;
     public float baseSpeed;
-    private Vector2 curDirection;
+    private Vector3 curDirection;
     public float contactDamage;
 
     private Rigidbody owner;
@@ -21,7 +21,10 @@ public class ProjectileObject : MonoBehaviour
         curDirection = transform.right;
         curSpeed = baseSpeed * chargePercent;
         curDamage = contactDamage * chargePercent;
+
         GetComponent<Rigidbody>().AddForce(transform.forward * curSpeed, ForceMode.Impulse);
+
+        Destroy(gameObject, lifeTime * chargePercent);
     }
 
 }

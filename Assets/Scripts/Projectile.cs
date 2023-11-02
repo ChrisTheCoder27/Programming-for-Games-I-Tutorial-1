@@ -9,6 +9,11 @@ public class Projectile : Weapon
 
     protected override void Attack(float chargePercent)
     {
-        ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
+        for (int i = 0; i < 3; i++)
+        {
+            ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
+            current.Initialize(chargePercent, owner);
+            current.gameObject.layer = gameObject.layer;
+        }
     }
 }

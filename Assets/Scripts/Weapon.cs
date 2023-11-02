@@ -10,16 +10,22 @@ public abstract class Weapon : MonoBehaviour
 
     protected Rigidbody owner;
 
-    [SerializeField] public float contactDamage;
-    [SerializeField] public float chargeTime;
-    [SerializeField] public float minCharge;
+    [field: SerializeField] public float contactDamage { get; private set; }
+    [field: SerializeField] public float chargeTime { get; private set; }
+    [field: SerializeField, Range(0,1)] public float minCharge { get; private set; }
+    [field: SerializeField] public float cost { get; private set; }
 
-    public WaitForSeconds CoolDown;
-    [SerializeField] public float coolDown;
+    public WaitForSeconds CoolDown { get; private set; }
+    [SerializeField] private float coolDown;
 
     private void OnEnable()
     {
         CoolDown = new WaitForSeconds(coolDown);
+    }
+
+    public float GetCost()
+    {
+        return cost;
     }
 
     protected abstract void Attack(float chargePercent);
@@ -37,7 +43,7 @@ public abstract class Weapon : MonoBehaviour
         }
 
         Attack(percent);
-        StartCoroutine(CoolDownTimer());
+            StartCoroutine(CoolDownTimer());
     }
 
     private IEnumerator CoolDownTimer()
@@ -72,7 +78,15 @@ public abstract class Weapon : MonoBehaviour
     public void EndAttack()
     {
         StopCoroutine(timerCoroutine);
-        TryAttack(currentChargeTime/chargeTime);
+        TryAttack(currentChargeTime / chargeTime);
+    }
+    private void OnTransformParentChanged()
+    {
+        owner = transform.root.GetComponent<Rigidbody>();
+    }
+    private void Awake()
+    {
+        owner = transform.root.GetComponent<Rigidbody>();
     }
 
 }

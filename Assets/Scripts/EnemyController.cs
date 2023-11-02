@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     public Transform player;
-
     public LayerMask groundLayer, playerLayer;
 
     Rigidbody enemy;
 
     public Vector3 walkPoint;
-    bool walkPointSet = false;
+    bool walkPointSet;
     public float walkPointRange;
 
     public bool playerInSightRange, playerInAttackRange;
@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
 
     public GameObject projectile;
     public GameObject projectilePos;
+    Rigidbody bulletRb;
     public float timeBetweenAttacks;
 
     bool alreadyAttacked;
@@ -40,7 +41,7 @@ public class EnemyController : MonoBehaviour
     {
         transform.LookAt(player);
 
-        if (alreadyAttacked)
+        if (!alreadyAttacked)
         {
             if(!alreadyAttacked)
             {
