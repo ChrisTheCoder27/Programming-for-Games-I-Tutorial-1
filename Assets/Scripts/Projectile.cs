@@ -9,11 +9,22 @@ public class Projectile : Weapon
 
     protected override void Attack(float chargePercent)
     {
-        for (int i = 0; i < 3; i++)
+        if (ammo > 0)
         {
-            ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
-            current.Initialize(chargePercent, owner);
-            current.gameObject.layer = gameObject.layer;
+            for (int i = 0; i < 3; i++)
+            {
+                ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
+                current.Initialize(chargePercent, owner);
+                current.gameObject.layer = gameObject.layer;
+            }
+            ammo -= cost;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
         }
     }
 }

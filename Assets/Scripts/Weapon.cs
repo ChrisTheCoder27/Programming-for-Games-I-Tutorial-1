@@ -7,6 +7,7 @@ public abstract class Weapon : MonoBehaviour
     private Coroutine timerCoroutine;
     protected float currentChargeTime;
     private bool atkTimerDone = true;
+    [SerializeField] protected float ammo;
 
     protected Rigidbody owner;
 
@@ -33,6 +34,11 @@ public abstract class Weapon : MonoBehaviour
     protected virtual bool CanAttack()
     {
         return atkTimerDone;
+    }
+
+    protected void Reload()
+    {
+        ammo = 12;
     }
 
     private void TryAttack(float percent)

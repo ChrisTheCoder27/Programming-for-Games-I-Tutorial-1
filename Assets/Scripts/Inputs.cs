@@ -7,10 +7,16 @@ public static class Inputs
 {
     private static PlayerAction _actions;
     private static PlayerController _owner;
+    private static Weapon _weapon;
 
     public static void BindNewPlayer(PlayerController player)
     {
         _owner = player;
+    }
+
+    public static void NewWeapon(Weapon weapon)
+    {
+        _weapon = weapon;
     }
     
     public static void Init(PlayerController player)
@@ -23,7 +29,7 @@ public static class Inputs
         _actions.Player.Jump.performed += ctx => _owner.Jump();
         _actions.Player.Look.performed += ctx => _owner.SetLook(ctx.ReadValue<Vector2>());
         _actions.Player.Shoot.performed += ctx => _owner.Shoot();
-        _actions.Player.Reload.performed += ctx => _owner.Reload();
+        //_actions.Player.Reload.started += ctx => _weapon.Reload();
 
         _actions.Permanent.Enable();
 

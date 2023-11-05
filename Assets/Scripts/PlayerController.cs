@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] private float speed;
     [SerializeField] private float jump;
     [SerializeField] private float sensitivity;
-    [SerializeField] private int ammo;
 
     [SerializeField] private Weapon weapon;
     private bool isAttacking;
@@ -54,19 +53,6 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             weapon.EndAttack();
         }
-        /*if (ammo > 0)
-        {
-            Rigidbody rbBullet = Instantiate(projectile, projectilePos.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rbBullet.AddForce(camFollowTarget.forward * 32f, ForceMode.Impulse);
-
-            Destroy(rbBullet.gameObject, 4);
-            ammo--;
-        }*/
-    }
-
-    public void Reload()
-    {
-        ammo = 5;
     }
 
     public void SetLook(Vector2 direction)

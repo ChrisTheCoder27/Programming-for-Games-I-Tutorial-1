@@ -6,18 +6,18 @@ using TMPro;
 public class AmmoCounter : MonoBehaviour
 {
     public TextMeshProUGUI ammoUI;
-    public int maxAmmo = 5;
+    public int maxAmmo = 12;
     public int currentAmmo;
     private bool isFiring;
 
     private void Awake()
     {
-        ammoUI.text = "Ammo: 5";
+        ammoUI.text = "Ammo: 12";
     }
 
     public void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !isFiring && currentAmmo > 0)
+        /*if(Input.GetMouseButtonDown(0) && !isFiring && currentAmmo > 0)
         {
             UpdateAmmo();
         }
@@ -25,9 +25,9 @@ public class AmmoCounter : MonoBehaviour
         {
             currentAmmo = maxAmmo;
             ammoUI.text = "Ammo: " + currentAmmo.ToString();
-        }
+        }*/
     }
-    
+
     private void UpdateAmmo()
     {
         isFiring = true;
