@@ -6,18 +6,20 @@ public class PlayerController : MonoBehaviour, IDamagable
 {
     Rigidbody rb;
 
-    //public GameObject projectile;
-    //public Transform projectilePos;
-
     private Vector2 _move;
     private Vector2 rotate;
+
+    //Weapons
+    public GameObject shotgun;
+    public GameObject sniper;
+    public GameObject subGun;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
     [SerializeField] private float jump;
     [SerializeField] private float sensitivity;
 
-    [SerializeField] private Weapon weapon;
+    [SerializeField] public Weapon weapon;
     private bool isAttacking;
 
     [SerializeField, Range(0, 180)] private float viewAngleClamp = 40f;
@@ -32,6 +34,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         rb = GetComponent<Rigidbody>();
         Inputs.Init(this);
+        /*shotgun = GameObject.Find("Shotgun");
+        sniper = GameObject.Find("Sniper");
+        subGun = GameObject.Find("Submachine Gun");*/
     }
     
 
@@ -85,6 +90,11 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             rb.velocity = new Vector3(rb.velocity.x, jump, rb.velocity.z);
         }
+    }
+
+    public void SwitchWeapon()
+    {
+        
     }
 
     public void Die()

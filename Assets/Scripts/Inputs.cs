@@ -29,7 +29,8 @@ public static class Inputs
         _actions.Player.Jump.performed += ctx => _owner.Jump();
         _actions.Player.Look.performed += ctx => _owner.SetLook(ctx.ReadValue<Vector2>());
         _actions.Player.Shoot.performed += ctx => _owner.Shoot();
-        //_actions.Player.Reload.started += ctx => _weapon.Reload();
+        _actions.Player.SwitchWeapon.performed += ctx => _owner.SwitchWeapon();
+        //_actions.Player.Reload.performed += ctx => _weapon.Reload();
 
         _actions.Permanent.Enable();
 
