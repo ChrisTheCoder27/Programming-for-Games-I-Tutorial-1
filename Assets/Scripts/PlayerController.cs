@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     private Vector2 rotate;
 
     //Weapons
-    public GameObject shotgun;
-    public GameObject sniper;
-    public GameObject subGun;
+    public GameObject[] guns;
+    //public GameObject sniper;
+    //public GameObject subGun;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
@@ -34,9 +34,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         rb = GetComponent<Rigidbody>();
         Inputs.Init(this);
-        /*shotgun = GameObject.Find("Shotgun");
-        sniper = GameObject.Find("Sniper");
-        subGun = GameObject.Find("Submachine Gun");*/
     }
     
 
@@ -92,9 +89,19 @@ public class PlayerController : MonoBehaviour, IDamagable
         }
     }
 
-    public void SwitchWeapon()
+    public void SwitchToShotgun()
     {
         
+    }
+
+    public void SwitchToSniper()
+    {
+
+    }
+
+    public void SwitchToSubGun()
+    {
+
     }
 
     public void Die()

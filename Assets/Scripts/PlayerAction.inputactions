@@ -51,9 +51,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Switch Weapon",
+                    "name": "SwitchGun1",
                     "type": "Button",
                     "id": "1cb8d2e1-a591-4cd2-b87e-b2d54e61d8e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchGun2",
+                    "type": "Button",
+                    "id": "67e45987-8aa5-4788-ab1f-39566fd8c34a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchGun3",
+                    "type": "Button",
+                    "id": "5c2d5fe1-ce47-445b-b5fd-2a49c523be93",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -167,29 +185,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch Weapon",
+                    "action": "SwitchGun1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "48110339-324b-4809-8a6a-0afc2e9a66ac",
+                    "id": "9d133ca7-ac67-4216-b6b9-2e5361b41a9b",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch Weapon",
+                    "action": "SwitchGun2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8fe4b520-778b-4ae4-99d8-da5f6993dfc3",
+                    "id": "557c8bdf-b929-4263-bd2b-c147ac0b106c",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch Weapon",
+                    "action": "SwitchGun3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
