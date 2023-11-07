@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     //Weapons
     public GameObject[] guns;
-    //public GameObject sniper;
-    //public GameObject subGun;
+    public bool usingShotgun;
+    public bool usingSniper;
+    public bool usingSubGun;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] private float sensitivity;
 
     [SerializeField] public Weapon weapon;
+    [SerializeField] public Weapon weapon2;
+    [SerializeField] public Weapon weapon3;
     private bool isAttacking;
 
     [SerializeField, Range(0, 180)] private float viewAngleClamp = 40f;
@@ -34,6 +37,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         rb = GetComponent<Rigidbody>();
         Inputs.Init(this);
+        usingShotgun = true;
+        usingSniper = false;
+        usingSubGun = false;
     }
     
 
@@ -49,11 +55,33 @@ public class PlayerController : MonoBehaviour, IDamagable
         isAttacking = !isAttacking;
         if (isAttacking)
         {
-            weapon.StartAttack();
+            if (usingShotgun)
+            {
+                weapon.StartAttack();
+            }
+            else if (usingSniper)
+            {
+                weapon2.StartAttack();
+            }
+            else if (usingSubGun)
+            {
+                weapon3.StartAttack();
+            }
         }
         else
         {
-            weapon.EndAttack();
+            if (usingShotgun)
+            {
+                weapon.EndAttack();
+            }
+            else if (usingSniper)
+            {
+                weapon2.EndAttack();
+            }
+            else if (usingSubGun)
+            {
+                weapon3.EndAttack();
+            }
         }
     }
 
@@ -91,17 +119,53 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void SwitchToShotgun()
     {
-        
+        if (usingShotgun)
+        {
+            Debug.Log("Already holding shotgun.");
+        }
+        else if (!usingShotgun)
+        {
+            usingSniper = false;
+            usingSubGun = false;
+            guns[1].SetActive(false);
+            guns[2].SetActive(false);
+            guns[0].SetActive(true);
+            usingShotgun = true;
+        }
     }
 
     public void SwitchToSniper()
     {
-
+        if (usingSniper)
+        {
+            Debug.Log("Already holding sniper.");
+        }
+        else if (!usingSniper)
+        {
+            usingShotgun = false;
+            usingSubGun = false;
+            guns[0].SetActive(false);
+            guns[2].SetActive(false);
+            guns[1].SetActive(true);
+            usingSniper = true;
+        }
     }
 
     public void SwitchToSubGun()
     {
-
+        if (usingSubGun)
+        {
+            Debug.Log("Already holding submachine gun.");
+        }
+        else if (!usingSubGun)
+        {
+            usingSniper = false;
+            usingShotgun = false;
+            guns[0].SetActive(false);
+            guns[1].SetActive(false);
+            guns[2].SetActive(true);
+            usingSubGun = true;
+        }
     }
 
     public void Die()

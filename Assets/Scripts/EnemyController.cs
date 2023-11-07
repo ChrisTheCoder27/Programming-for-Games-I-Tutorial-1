@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public NavMeshAgent agent;
+
     public Transform player;
     public LayerMask groundLayer, playerLayer;
 
@@ -35,10 +37,16 @@ public class EnemyController : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
         if (playerInSightRange && playerInAttackRange) Attack();
+
+        if (!playerInSightRange && !playerInAttackRange) Patrol();
+
+        if (playerInSightRange && !playerInAttackRange) Chase();
     }
 
     public void Attack()
     {
+        agent.SetDestination(transform.position);
+
         transform.LookAt(player);
 
         if (!alreadyAttacked)
@@ -52,6 +60,39 @@ public class EnemyController : MonoBehaviour
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
+        }
+    }
+
+    private void Patrol()
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkPoint);
+        }
+        Vector3 distanceWalkPoint = transform.position - walkPoint;
+
+        if (distanceWalkPoint.magnitude < 1f)
+        {
+            walkPointSet = false;
+        }
+    }
+
+    private void Chase()
+    {
+        agent.SetDestination(player.position);
+    }
+
+    private void SearchWalkPoint()
+    {
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x,transform.position.y, transform.position.z);
+        if (Physics.Raycast(walkPoint, -transform.up, 1f, groundLayer))
+        {
+            walkPointSet = true;
         }
     }
 

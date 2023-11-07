@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [field: SerializeField] private WeaponOS weaponStats;
     private Coroutine timerCoroutine;
     protected float currentChargeTime;
     private bool atkTimerDone = true;
@@ -19,10 +20,6 @@ public abstract class Weapon : MonoBehaviour
     public WaitForSeconds CoolDown { get; private set; }
     [SerializeField] private float coolDown;
 
-    private void OnEnable()
-    {
-        CoolDown = new WaitForSeconds(coolDown);
-    }
 
     public float GetCost()
     {
