@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public bool usingShotgun;
     public bool usingSniper;
     public bool usingSubGun;
+    public bool usingBurstGun;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public Weapon weapon;
     [SerializeField] public Weapon weapon2;
     [SerializeField] public Weapon weapon3;
+    [SerializeField] public Weapon weapon4;
     private bool isAttacking;
 
     [SerializeField, Range(0, 180)] private float viewAngleClamp = 40f;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         usingShotgun = true;
         usingSniper = false;
         usingSubGun = false;
+        usingBurstGun = false;
     }
     
 
@@ -67,6 +70,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             {
                 weapon3.StartAttack();
             }
+            else if (usingBurstGun)
+            {
+                weapon4.StartAttack();
+            }
         }
         else
         {
@@ -81,6 +88,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             else if (usingSubGun)
             {
                 weapon3.EndAttack();
+            }
+            else if (usingBurstGun)
+            {
+                weapon4.EndAttack();
             }
         }
     }
@@ -127,8 +138,10 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             usingSniper = false;
             usingSubGun = false;
+            usingBurstGun = false;
             guns[1].SetActive(false);
             guns[2].SetActive(false);
+            guns[3].SetActive(false);
             guns[0].SetActive(true);
             usingShotgun = true;
         }
@@ -144,8 +157,10 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             usingShotgun = false;
             usingSubGun = false;
+            usingBurstGun = false;
             guns[0].SetActive(false);
             guns[2].SetActive(false);
+            guns[3].SetActive(false);
             guns[1].SetActive(true);
             usingSniper = true;
         }
@@ -161,12 +176,69 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             usingSniper = false;
             usingShotgun = false;
+            usingBurstGun = false;
             guns[0].SetActive(false);
             guns[1].SetActive(false);
+            guns[3].SetActive(false);
             guns[2].SetActive(true);
             usingSubGun = true;
         }
     }
+
+    public void SwitchToBurstGun()
+    {
+        if (usingBurstGun)
+        {
+            Debug.Log("Already holding burst fire gun.");
+        }
+        else if (!usingBurstGun)
+        {
+            usingSniper = false;
+            usingShotgun = false;
+            usingSubGun = false;
+            guns[0].SetActive(false);
+            guns[1].SetActive(false);
+            guns[2].SetActive(false);
+            guns[3].SetActive(true);
+            usingBurstGun = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "AmmoBox")
+        {
+            Destroy(collision.gameObject);
+            if (usingShotgun)
+            {
+                if (weapon.ammo <= 9)
+                {
+                    weapon.ammo += weapon.cost;
+                }
+            }
+            else if (usingSniper)
+            {
+                if (weapon2.ammo <= 2)
+                {
+                    weapon2.ammo += weapon2.cost;
+                }
+            }
+            else if (usingSubGun)
+            {
+                if (weapon3.ammo <= 15)
+                {
+                    weapon3.ammo += 5;
+                }
+            }
+            else if (usingBurstGun)
+            {
+                if (weapon4.ammo <= 12)
+                {
+                    weapon4.ammo += 4;
+                }
+            }
+        }
+    } 
 
     public void Die()
     {

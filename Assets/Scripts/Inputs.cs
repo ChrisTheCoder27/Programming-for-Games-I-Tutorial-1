@@ -32,6 +32,7 @@ public static class Inputs
         _actions.Player.SwitchGun1.performed += ctx => _owner.SwitchToShotgun();
         _actions.Player.SwitchGun2.performed += ctx => _owner.SwitchToSniper();
         _actions.Player.SwitchGun3.performed += ctx => _owner.SwitchToSubGun();
+        _actions.Player.SwitchGun4.performed += ctx => _owner.SwitchToBurstGun();
         //_actions.Player.Reload.performed += ctx => _weapon.Reload();
 
         _actions.Permanent.Enable();

@@ -98,6 +98,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchGun4"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1fc24f0-aaa1-458f-b2de-56a6d4defef1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchGun3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dff88479-4c55-48db-b89d-ea90070af3db"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchGun4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -304,6 +324,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_Player_SwitchGun1 = m_Player.FindAction("SwitchGun1", throwIfNotFound: true);
         m_Player_SwitchGun2 = m_Player.FindAction("SwitchGun2", throwIfNotFound: true);
         m_Player_SwitchGun3 = m_Player.FindAction("SwitchGun3", throwIfNotFound: true);
+        m_Player_SwitchGun4 = m_Player.FindAction("SwitchGun4", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -379,6 +400,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchGun1;
     private readonly InputAction m_Player_SwitchGun2;
     private readonly InputAction m_Player_SwitchGun3;
+    private readonly InputAction m_Player_SwitchGun4;
     public struct PlayerActions
     {
         private @PlayerAction m_Wrapper;
@@ -391,6 +413,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         public InputAction @SwitchGun1 => m_Wrapper.m_Player_SwitchGun1;
         public InputAction @SwitchGun2 => m_Wrapper.m_Player_SwitchGun2;
         public InputAction @SwitchGun3 => m_Wrapper.m_Player_SwitchGun3;
+        public InputAction @SwitchGun4 => m_Wrapper.m_Player_SwitchGun4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -424,6 +447,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwitchGun3.started += instance.OnSwitchGun3;
             @SwitchGun3.performed += instance.OnSwitchGun3;
             @SwitchGun3.canceled += instance.OnSwitchGun3;
+            @SwitchGun4.started += instance.OnSwitchGun4;
+            @SwitchGun4.performed += instance.OnSwitchGun4;
+            @SwitchGun4.canceled += instance.OnSwitchGun4;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -452,6 +478,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwitchGun3.started -= instance.OnSwitchGun3;
             @SwitchGun3.performed -= instance.OnSwitchGun3;
             @SwitchGun3.canceled -= instance.OnSwitchGun3;
+            @SwitchGun4.started -= instance.OnSwitchGun4;
+            @SwitchGun4.performed -= instance.OnSwitchGun4;
+            @SwitchGun4.canceled -= instance.OnSwitchGun4;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -571,6 +600,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         void OnSwitchGun1(InputAction.CallbackContext context);
         void OnSwitchGun2(InputAction.CallbackContext context);
         void OnSwitchGun3(InputAction.CallbackContext context);
+        void OnSwitchGun4(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

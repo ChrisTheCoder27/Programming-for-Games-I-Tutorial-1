@@ -7,9 +7,6 @@ public class WeaponUI : MonoBehaviour
 {
     public TextMeshProUGUI weaponUI;
     public PlayerController playerCon;
-    public Gun1 gun1;
-    public Gun2 gun2;
-    public Gun3 gun3;
 
     void Awake()
     {
@@ -20,15 +17,19 @@ public class WeaponUI : MonoBehaviour
     {
         if (playerCon.usingShotgun)
         {
-            weaponUI.text = $"Damage: 20\nCharge Time: 1.5\nCost: 3";
+            weaponUI.text = $"Damage: 20\nCharge Time: 1.5\nCost: 3\nAmmo: " + playerCon.weapon.ammo;
         }
         else if (playerCon.usingSniper)
         {
-            weaponUI.text = $"Damage: 40\nCharge Time: 1\nCost: 1";
+            weaponUI.text = $"Damage: 40\nCharge Time: 1\nCost: 1\nAmmo: " + playerCon.weapon2.ammo;
         }
         else if (playerCon.usingSubGun)
         {
-            weaponUI.text = $"Damage: 5\nCharge Time: 0.4\nCost: 1";
+            weaponUI.text = $"Damage: 5\nCharge Time: 0.4\nCost: 1\nAmmo: " + playerCon.weapon3.ammo;
+        }
+        else if (playerCon.usingBurstGun)
+        {
+            weaponUI.text = $"Damage: 10\nCharge Time: 0.8\nCost: 4\nAmmo: " + playerCon.weapon4.ammo;
         }
     }
     
