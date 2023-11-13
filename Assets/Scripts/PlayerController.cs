@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public bool usingSniper;
     public bool usingSubGun;
     public bool usingBurstGun;
+    public bool usingLaserGun;
 
     //[Header("Player Stats")]
     [SerializeField] private float speed;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public Weapon weapon2;
     [SerializeField] public Weapon weapon3;
     [SerializeField] public Weapon weapon4;
+    [SerializeField] public Weapon weapon5;
     private bool isAttacking;
 
     [SerializeField, Range(0, 180)] private float viewAngleClamp = 40f;
@@ -74,6 +76,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             {
                 weapon4.StartAttack();
             }
+            else if (usingLaserGun)
+            {
+                weapon5.StartAttack();
+            }
         }
         else
         {
@@ -92,6 +98,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             else if (usingBurstGun)
             {
                 weapon4.EndAttack();
+            }
+            else if (usingLaserGun)
+            {
+                weapon5.EndAttack();
             }
         }
     }
@@ -139,9 +149,11 @@ public class PlayerController : MonoBehaviour, IDamagable
             usingSniper = false;
             usingSubGun = false;
             usingBurstGun = false;
+            usingLaserGun = false;
             guns[1].SetActive(false);
             guns[2].SetActive(false);
             guns[3].SetActive(false);
+            guns[4].SetActive(false);
             guns[0].SetActive(true);
             usingShotgun = true;
         }
@@ -158,9 +170,11 @@ public class PlayerController : MonoBehaviour, IDamagable
             usingShotgun = false;
             usingSubGun = false;
             usingBurstGun = false;
+            usingLaserGun = false;
             guns[0].SetActive(false);
             guns[2].SetActive(false);
             guns[3].SetActive(false);
+            guns[4].SetActive(false);
             guns[1].SetActive(true);
             usingSniper = true;
         }
@@ -177,9 +191,11 @@ public class PlayerController : MonoBehaviour, IDamagable
             usingSniper = false;
             usingShotgun = false;
             usingBurstGun = false;
+            usingLaserGun = false;
             guns[0].SetActive(false);
             guns[1].SetActive(false);
             guns[3].SetActive(false);
+            guns[4].SetActive(false);
             guns[2].SetActive(true);
             usingSubGun = true;
         }
@@ -196,11 +212,35 @@ public class PlayerController : MonoBehaviour, IDamagable
             usingSniper = false;
             usingShotgun = false;
             usingSubGun = false;
+            usingLaserGun = false;
             guns[0].SetActive(false);
             guns[1].SetActive(false);
             guns[2].SetActive(false);
+            guns[4].SetActive(false);
             guns[3].SetActive(true);
             usingBurstGun = true;
+        }
+    }
+
+    public void SwitchToLaserGun()
+    {
+        if (usingLaserGun)
+        {
+            Debug.Log("Already holding laser gun.");
+        }
+        else if (!usingLaserGun)
+        {
+            usingSniper = false;
+            usingShotgun = false;
+            usingSubGun = false;
+            usingBurstGun = false;
+            usingLaserGun = true;
+            guns[0].SetActive(false);
+            guns[1].SetActive(false);
+            guns[2].SetActive(false);
+            guns[3].SetActive(false);
+            guns[4].SetActive(true);
+            usingLaserGun = true;
         }
     }
 
@@ -235,6 +275,13 @@ public class PlayerController : MonoBehaviour, IDamagable
                 if (weapon4.ammo <= 12)
                 {
                     weapon4.ammo += 4;
+                }
+            }
+            else if (usingLaserGun)
+            {
+                if (weapon5.ammo <= 40)
+                {
+                    weapon5.ammo += 10;
                 }
             }
         }

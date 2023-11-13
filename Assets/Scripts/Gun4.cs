@@ -11,11 +11,12 @@ public class Gun4 : Weapon
     {
         if (ammo > 0)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
                 current.Initialize(chargePercent, owner);
                 current.gameObject.layer = gameObject.layer;
+                StartCoroutine(Burst());
             }
             ammo -= cost;
         }
@@ -26,5 +27,10 @@ public class Gun4 : Weapon
         {
             ammo = 16;
         }
+    }
+
+    private IEnumerator Burst()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 }

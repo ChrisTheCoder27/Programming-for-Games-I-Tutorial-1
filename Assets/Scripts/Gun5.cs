@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
-public class Gun2 : Weapon
+public class Gun5 : Weapon
 {
     [SerializeField] private ProjectileObject projectileFired;
     [SerializeField] private Transform firePoint;
@@ -21,8 +22,7 @@ public class Gun2 : Weapon
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ammo = 3;
+            ammo = 50;
         }
     }
 }
-

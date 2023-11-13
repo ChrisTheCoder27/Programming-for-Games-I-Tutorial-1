@@ -29,7 +29,11 @@ public class WeaponUI : MonoBehaviour
         }
         else if (playerCon.usingBurstGun)
         {
-            weaponUI.text = $"Damage: 10\nCharge Time: 0.8\nCost: 4\nAmmo: " + playerCon.weapon4.ammo;
+            weaponUI.text = $"Damage: 10\nCharge Time: 0.8\nCost: 2\nAmmo: " + playerCon.weapon4.ammo;
+        }
+        else if (playerCon.usingLaserGun)
+        {
+            weaponUI.text = $"Damage: 2\nCharge Time: 0.2\nCost: 2\nAmmo: " + playerCon.weapon5.ammo;
         }
     }
     

@@ -14,8 +14,8 @@ public class Gun3 : Weapon
             ProjectileObject current = Instantiate(projectileFired, firePoint.position, owner.transform.rotation);
             current.Initialize(chargePercent, owner);
             current.gameObject.layer = gameObject.layer;
+            ammo -= cost;
         }
-        ammo -= cost;
     }
     private void Update()
     {

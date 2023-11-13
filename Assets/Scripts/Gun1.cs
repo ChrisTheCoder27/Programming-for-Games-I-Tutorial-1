@@ -20,6 +20,7 @@ public class Gun1 : Weapon
             ammo -= cost;
         }
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
