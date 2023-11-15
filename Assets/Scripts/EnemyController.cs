@@ -64,11 +64,13 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Patrol()
+
     {
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
         {
+
             agent.SetDestination(walkPoint);
         }
         Vector3 distanceWalkPoint = transform.position - walkPoint;
@@ -89,7 +91,7 @@ public class EnemyController : MonoBehaviour
         float randomX = Random.Range(-walkPointRange, walkPointRange);
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x,transform.position.y, transform.position.z);
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         if (Physics.Raycast(walkPoint, -transform.up, 1f, groundLayer))
         {
             walkPointSet = true;
