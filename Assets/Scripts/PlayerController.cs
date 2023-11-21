@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     private Vector2 _move;
     private Vector2 rotate;
 
+    [SerializeField] private EnemyController[] controlledEnemy;
+
     //Weapons
     public GameObject[] guns;
     public bool usingShotgun;
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         usingSniper = false;
         usingSubGun = false;
         usingBurstGun = false;
+        usingLaserGun = false;
     }
     
 
@@ -285,15 +288,26 @@ public class PlayerController : MonoBehaviour, IDamagable
                 }
             }
         }
-    } 
-
-    public void Die()
-    {
-
     }
 
     public void TakeDamage(float damageTaken)
     {
 
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void MoveTo(Ray camToWorldRay)
+    {
+        if (!Physics.Raycast(camToWorldRay, out RaycastHit hitObj, StaticUtility.MoveLayer)) return;
+
+        foreach (EnemyController en in controlledEnemy)
+        {
+            en.MoveToTarget(hitObj.point);
+        }
+    }
+    
 }

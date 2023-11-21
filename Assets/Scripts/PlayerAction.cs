@@ -116,6 +116,15 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveTo"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e67b0da1-9c8f-484e-a563-794dfaa1af30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchGun5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fca1402a-5c0a-4a53-957f-2173fe6f6074"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveTo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -346,6 +366,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         m_Player_SwitchGun3 = m_Player.FindAction("SwitchGun3", throwIfNotFound: true);
         m_Player_SwitchGun4 = m_Player.FindAction("SwitchGun4", throwIfNotFound: true);
         m_Player_SwitchGun5 = m_Player.FindAction("SwitchGun5", throwIfNotFound: true);
+        m_Player_MoveTo = m_Player.FindAction("MoveTo", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -423,6 +444,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchGun3;
     private readonly InputAction m_Player_SwitchGun4;
     private readonly InputAction m_Player_SwitchGun5;
+    private readonly InputAction m_Player_MoveTo;
     public struct PlayerActions
     {
         private @PlayerAction m_Wrapper;
@@ -437,6 +459,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         public InputAction @SwitchGun3 => m_Wrapper.m_Player_SwitchGun3;
         public InputAction @SwitchGun4 => m_Wrapper.m_Player_SwitchGun4;
         public InputAction @SwitchGun5 => m_Wrapper.m_Player_SwitchGun5;
+        public InputAction @MoveTo => m_Wrapper.m_Player_MoveTo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -476,6 +499,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwitchGun5.started += instance.OnSwitchGun5;
             @SwitchGun5.performed += instance.OnSwitchGun5;
             @SwitchGun5.canceled += instance.OnSwitchGun5;
+            @MoveTo.started += instance.OnMoveTo;
+            @MoveTo.performed += instance.OnMoveTo;
+            @MoveTo.canceled += instance.OnMoveTo;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -510,6 +536,9 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
             @SwitchGun5.started -= instance.OnSwitchGun5;
             @SwitchGun5.performed -= instance.OnSwitchGun5;
             @SwitchGun5.canceled -= instance.OnSwitchGun5;
+            @MoveTo.started -= instance.OnMoveTo;
+            @MoveTo.performed -= instance.OnMoveTo;
+            @MoveTo.canceled -= instance.OnMoveTo;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -631,6 +660,7 @@ public partial class @PlayerAction: IInputActionCollection2, IDisposable
         void OnSwitchGun3(InputAction.CallbackContext context);
         void OnSwitchGun4(InputAction.CallbackContext context);
         void OnSwitchGun5(InputAction.CallbackContext context);
+        void OnMoveTo(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

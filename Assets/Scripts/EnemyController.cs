@@ -26,9 +26,13 @@ public class EnemyController : MonoBehaviour
 
     bool alreadyAttacked;
 
-    void Start()
+    private EAIState aiState = EAIState.Idle;
+
+    private enum EAIState
     {
-        
+        Idle = 1,
+        Patrol = 2,
+        Move = 4
     }
 
     void Update()
@@ -98,5 +102,12 @@ public class EnemyController : MonoBehaviour
     public void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    public void MoveToTarget(Vector3 hitObjectRes)
+    {
+        aiState = EAIState.Move;
+        agent.SetDestination(hitObjectRes);
+        agent.isStopped = false;
     }
 }
