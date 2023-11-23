@@ -30,7 +30,7 @@ public static class Inputs
     
     public static void Init(PlayerController player, Camera cam = null)
     {
-        SetControllerCamera(cam ? cam : Camera.main);
+        //SetControllerCamera(cam ? cam : Camera.main);
 
         _actions = new PlayerAction();
         BindNewPlayer(player);
@@ -45,7 +45,7 @@ public static class Inputs
         _actions.Player.SwitchGun3.performed += ctx => _owner.SwitchToSubGun();
         _actions.Player.SwitchGun4.performed += ctx => _owner.SwitchToBurstGun();
         _actions.Player.SwitchGun5.performed += ctx => _owner.SwitchToLaserGun();
-        _actions.Player.MoveTo.performed += ctx => _owner.MoveTo(CamToWorldRay());
+        //_actions.Player.MoveTo.performed += ctx => _owner.MoveTo(CamToWorldRay());
         //_actions.Player.Reload.performed += ctx => _weapon.Reload();
 
         _actions.Permanent.Enable();

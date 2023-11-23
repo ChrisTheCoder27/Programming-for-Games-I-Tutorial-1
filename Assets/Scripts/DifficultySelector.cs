@@ -9,7 +9,7 @@ public class DifficultySelector : MonoBehaviour
     public EDifficultySelector difficultySelector;
     Button btn;
 
-    private void Awake()
+    void Awake()
     {
         btn = GetComponent<Button>();
         btn.onClick.AddListener(delegate { LoadDifficultySelector(difficultySelector); });
